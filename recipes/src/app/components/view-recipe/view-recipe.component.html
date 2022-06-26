@@ -1,0 +1,35 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <p class="h3 fw-bold text-danger">View Recipe</p>
+            <p class="fst-italic">  recipe here</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+   
+<div class="container" *ngIf="!loading && isRecipeNotEmpty() ">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="https://www.freeiconspng.com/thumbs/recipes-icon-png/free-recipe-sheet-clip-art-21.png" class="recipe-img-big">
+        </div>
+        <div class="col-sm-6">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-danger"> Name: <span class="fw-bold">{{recipe.recipeName}}</span></li>
+                <li class="list-group-item list-group-item-danger"> Category: <span class="fw-bold">{{recipe.category}}</span></li>
+                <li class="list-group-item list-group-item-danger"> Date Added: <span class="fw-bold">{{recipe.insertedDate | date:'short'}}</span></li>
+                <li class="list-group-item list-group-item-danger"> Ingredients:<br><div class="fw-bold next-line mx-3">{{recipe.ingredents}}</div></li>
+                <li class="list-group-item list-group-item-danger"> Procedure:<br><div class="fw-bold next-line mx-3">{{recipe.description}}</div></li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <a routerLink="/" class="btn btn-danger"> Back</a>
+        </div>
+    </div>
+</div>

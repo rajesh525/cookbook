@@ -1,0 +1,47 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <p class="h3 fw-bold text-danger"> Add Recipe</p>
+            <p class="fst-italic"> I'll add my new recipe here</p>
+        </div>
+    </div>
+</div>
+
+<div  *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <form (submit)="createRecipe()">
+             <div class="mb-2"> 
+                <input type="text" required="true" name="name" placeholder="recipe name" class="form-control" [(ngModel)]="recipe.recipeName">
+            </div>
+                
+             <div class="mb-2"> 
+                <input type="text" name="category"  required="true" placeholder="category" class="form-control" [(ngModel)]="recipe.category">
+            </div>
+            
+            <div class="mb-2"> 
+                <!--<input type="text" name="ingrideints" required="true"  placeholder="ingrideints" class="form-contorl" [(ngModel)]="recipe.ingredents" > -->
+                <textarea required="true"   class="form-control form-control-lg"  name="ingrideints" id="exampleFormControlTextarea6" rows="3" [(ngModel)]="recipe.ingredents" placeholder="Write ingrideints separated by comma.."></textarea>
+            </div>
+            
+            <div class="mb-2"> 
+                <textarea required="true"   class="form-control form-control-lg z-depth-1"  name="description" id="exampleFormControlTextarea6" rows="3" [(ngModel)]="recipe.description" placeholder="Write procedure steps separated by comma.."></textarea>
+   
+                <!--<input type="textarea" name="description"  required="true" placeholder="description" class="form-contorl" [(ngModel)]="recipe.description">-->
+            </div>
+            
+            <div class="mb-2"> 
+                <input type="submit" value="Create" placeholder="recipe name" class="btn btn-danger">
+                <a routerLink="/" class="btn btn-dark ms-2">Close</a>
+            </div>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <img src="https://www.freeiconspng.com/thumbs/recipes-icon-png/free-recipe-sheet-clip-art-21.png" class="recipe-img">
+        </div>
+    </div>
+</div>

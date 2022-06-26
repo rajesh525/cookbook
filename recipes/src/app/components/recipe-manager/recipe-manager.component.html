@@ -1,0 +1,64 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <p class="h3 text-danger fw-bold">ng recipes
+            <a class="btn btn-danger btn-sm" routerLink="/recipes/add">
+                <i class="fa fa-plus-circle"></i> New</a>
+            </p>
+            <p class="fst-italic"> I did not remember what i make so keeping track of recipes i made here....</p>
+            <form action="">
+                <div class="row">
+                    <div class="col-md-4">
+                     <div class="row">
+                        <div class="col">
+                            <input type="text" name="searchtext" class="form-control" [(ngModel)]="searchString" placeholder="search recipe">
+                        </div>
+        
+                     </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<pre>{{recipes | json }}</pre>-->
+<!-- recipes-->
+<div *ngIf="loading && recipes.length ==0">
+ 
+    <app-spinner></app-spinner>
+
+</div>
+
+<div *ngIf="!loading && recipes.length > 0" class="container mt-3">
+    <div class="row">
+        <div class="col-md-6" *ngFor="let recipe of recipes ">
+            <div class="card list-group-item-danger shadow-lg my-2" *ngIf="searchString===''||recipe.recipeName.toLowerCase().includes(searchString)">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <img class="recipe-img" src="https://www.freeiconspng.com/thumbs/recipes-icon-png/free-recipe-sheet-clip-art-21.png" alt="">
+                        </div>
+                        <div class="col-sm-7">
+                            <ul class="list-group">
+                                <li class="list-group-item"> Name: <span class="fw-bold">{{recipe.recipeName}}</span></li>
+                                <li class="list-group-item"> Category: <span class="fw-bold">{{recipe.category}}</span></li>
+                                <li class="list-group-item"> Date Added: <span class="fw-bold">{{recipe.insertedDate | date:'short'}}</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
+                            <a class="btn btn-warning my-1" routerLink="/recipes/view/{{recipe.id}}">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a class="btn btn-warning my-1" routerLink="/recipes/edit/{{recipe.id}}">
+                                <i class="fa fa-pen"></i>
+                            </a>
+                            <button class="btn btn-danger my-1" (click)="deleteRecipe(recipe.id)">
+                                <i class="fa fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
